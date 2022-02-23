@@ -1,43 +1,21 @@
-class Letras{
-    constructor(timer,fn){
-
-        this.timer = timer;
-        this.fn = fn;
-        this.myInterval = 0;
-    }
-    mostrarLetras(palabra){
-        let caracteres = palabra.split('');
-        let countCaracteres = 0;
-        this.myInterval = setInterval(() =>{
-            if(countCaracteres == caracteres.lenght){
-                this.stop();
-                this.fn();
-                return;
+const contadorNumero = (text, timer = 1000) => {
+    return new Promise((resolve, reject) => {
+        const words = text.split("");
+        let counter = 0;
+        let sti = setInterval(() => {
+            if(words[counter]) {
+                console.log(words[counter]);
+                counter++
             }
-            console.log(caracteres[countCaracteres]);
-            countCaracteres++;
-        }, this.timer);
-    }
-        stop(){
-        clearInterval(this.myInterval);
-    }
-  
+            else {
+                clearInterval(sti);
+                console.log('terminado')
+            }
+        },timer)
+    })
 }
 
-const fin = () => console.log(`terminé!`);
-
-const lt1 = new Letras(0, fin);
-const lt2 = new Letras(250, fin);
-const lt3 = new Letras(500, fin);
-const lt4 = new Letras(1000, fin);
- 
-
-lt1.mostrarLetras("Rodrigo");
-lt2.mostrarLetras("Nicolas");
-lt3.mostrarLetras("Esteban");
-lt4.mostrarLetras("Junior");
-
-
+contadorNumero('hola',1000);
 
 
 
